@@ -1,24 +1,29 @@
 $().ready(function() {
 
-    var url = "http://localhost:8080/Vendor/List"
+    var url = "http://localhost:8080/Vendors/List"
 
     $.getJSON(url)
         .then(function(jsonResponse)  {
                 console.log(jsonResponse);
-                render(jsonRepsonse);
+                render(jsonResponse);
         });
 
 });
 
 function render(jsonResponse)  {
     var tbody = $("#tbody");
-    var vendors = jsonRepsonse.data;
+    var vendors = jsonResponse.Data;
     for(var vendor of vendors)  {
         var row = "<tr>";
-        row += "<td>" + vendor.id + "</td>";
-        row += "<td>" + vendor.name + "</td>";
-        row += "<td>" + vendor.price + "</td>";
-        row += "<td>" + vendor.vendor.name + "</td>";
+        row += "<td>" + vendor.Id + "</td>";
+        row += "<td>" + vendor.Code + "</td>";
+        row += "<td>" + vendor.Name + "</td>";
+        row += "<td>" + vendor.Address + "</td>";
+        row += "<td>" + vendor.City + "</td>";
+        row += "<td>" + vendor.State + "</td>";
+        row += "<td>" + vendor.Zip + "</td>";
+        row += "<td>" + vendor.Email + "</td>";
+        row += "<td>" + vendor.PreApproved + "</td>";
         row += "</tr>";
         tbody.append(row);
     }
